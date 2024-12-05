@@ -108,6 +108,9 @@ module.exports = {
         allowNull: true,
       }
     });
+
+    await queryInterface.addIndex('ReturnedBooks', ['bookId'], { indexName: "bookId_index" });
+    await queryInterface.addIndex('ReturnedBooks', ['userId'], { indexName: "userId_index" });
   },
 
   async down(queryInterface, Sequelize) {
