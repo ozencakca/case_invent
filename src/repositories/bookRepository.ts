@@ -64,6 +64,8 @@ export class BookRepository {
 
     await book.save({ transaction });
 
-    return book;
+    return {
+      score,
+    };
   }
 }

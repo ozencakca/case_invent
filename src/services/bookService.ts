@@ -54,11 +54,8 @@ export class BookService {
   }
 
   async returnBook(userId: number, bookId: number, score: number, transaction: Transaction): Promise<BookDTO | any> {
-    const book = await this.bookRepository.returnBook(userId, bookId, score, transaction);
+    const scoreResponse = await this.bookRepository.returnBook(userId, bookId, score, transaction);
 
-    return {
-      id: book.id,
-      name: book.name,
-    };
+    return scoreResponse;
   }
 }

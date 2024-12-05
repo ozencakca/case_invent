@@ -61,15 +61,13 @@ export class UserService {
     const transaction = await sequelize.transaction();
     await this.userRepository.findUserById(userId);
     try {
-      const res = await this.bookService.returnBook(userId, bookId, score, transaction);
+      const scoreResponse = await this.bookService.returnBook(userId, bookId, score, transaction);
       await this.ReturnBookService.createReturnedBookForUser(userId, bookId, score, transaction);
 
       //Commit 
       await transaction.commit();
 
-      return {
-        res,
-      };
+      return scoreResponse;
     } catch (error) {
       // Rollback 
       await transaction.rollback();
